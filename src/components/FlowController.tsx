@@ -131,6 +131,19 @@ export function FlowController() {
     })
   }, [currentApp, currentStage, shouldShowPostLSPNextSteps, completedSORs.length])
 
+  // Clear showReport flag on hard refresh to ensure we always start at FOR
+  // If we're at FOR stage, we should never show the report (hard refresh behavior)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && currentStage === 'FOR') {
+      const showReportFlag = localStorage.getItem('showReport')
+      if (showReportFlag === 'true') {
+        // If we're at FOR stage (hard refresh), clear the report flag
+        console.log('[FlowController] Hard refresh detected (FOR stage) - clearing showReport flag')
+        localStorage.removeItem('showReport')
+      }
+    }
+  }, [currentStage])
+
   // Check if all 5 SORs are complete
   const allSORsComplete = completedSORs.length >= 5
   const lspStarted = currentLSPPanel > 0 // LSP has started when currentLSPPanel is set
@@ -337,19 +350,6 @@ export function FlowController() {
     profileEditorPairingShown && 
     globalReviewWithTeamShown && 
     ispIntroductionShown
-
-  // Clear showReport flag on hard refresh to ensure we always start at FOR
-  // If we're at FOR stage, we should never show the report (hard refresh behavior)
-  useEffect(() => {
-    if (typeof window !== 'undefined' && currentStage === 'FOR') {
-      const showReportFlag = localStorage.getItem('showReport')
-      if (showReportFlag === 'true') {
-        // If we're at FOR stage (hard refresh), clear the report flag
-        console.log('[FlowController] Hard refresh detected (FOR stage) - clearing showReport flag')
-        localStorage.removeItem('showReport')
-      }
-    }
-  }, [currentStage])
 
   // Show Report page if flag is set (but only if not at FOR stage)
   // On hard refresh, currentStage will be 'FOR', so this check will prevent showing the report
