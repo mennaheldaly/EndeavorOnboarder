@@ -58,7 +58,7 @@ export function Report() {
       const sorData = assessments
         .filter(a => a.sorNumber && a.status === 'completed')
         .map(a => ({
-          id: a.id,
+          id: a.sorNumber, // Convert to number - use sorNumber as id
           sorNumber: a.sorNumber,
           mentorName: a.mentorName,
           feedback: a.feedback || '',

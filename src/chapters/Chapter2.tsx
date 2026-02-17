@@ -62,10 +62,13 @@ Best,
     
     const email = {
       id: Date.now().toString(),
+      from: "mennaheldaly@endeavor.org",
       to: 'daniel.kim@endeavor.org',
       cc: [],
       subject: emailToAM.subject,
       body: emailToAM.body,
+      timestamp: new Date().toISOString(),
+      read: false,
       sent: true,
     }
     addEmail(email)
@@ -88,10 +91,13 @@ Best,
     
     const email = {
       id: (Date.now() + 1).toString(),
-      to: 'Omar.mendoza@techflow.com',
+      from: "mennaheldaly@endeavor.org",
+      to: 'Omar.hassan@techflow.com',
       cc: [],
       subject: emailToFounder.subject,
       body: emailToFounder.body,
+      timestamp: new Date().toISOString(),
+      read: false,
       sent: true,
     }
     addEmail(email)
@@ -112,6 +118,7 @@ Best,
       id: Date.now().toString(),
       type: 'SOR' as const,
       sorNumber: 1,
+      title: `SOR ${1}`,
       attendees: calendarData.attendees,
       date: 'Thu',
       time: '3:00–3:45 PM',
@@ -464,7 +471,7 @@ Best,
               animation: 'fadeIn 0.5s ease-in',
             }}>
               <div className="email-item-header">
-                <span className="email-item-from">Omar Hassan &lt;Omar.mendoza@techflow.com&gt;</span>
+                <span className="email-item-from">Omar Hassan &lt;Omar.hassan@techflow.com&gt;</span>
                 <span style={{ fontSize: '0.875rem', color: 'var(--endeavor-gray-dark)' }}>1 hour ago</span>
               </div>
               <div className="email-item-subject">Re: {emailToFounder.subject}</div>

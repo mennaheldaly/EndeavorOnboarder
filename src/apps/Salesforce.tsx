@@ -130,7 +130,7 @@ export function Salesforce() {
     {
       name: 'Omar Hassan',
       role: 'Founder & CEO, TechFlow Solutions',
-      email: 'Omar.mendoza@techflow.com',
+      email: 'Omar.hassan@techflow.com',
       phone: '+52 55 1234 5678',
       company: 'TechFlow Solutions',
       type: 'Founder',

@@ -30,8 +30,8 @@ export function Chapter5({ onComplete }: Chapter5Props) {
       meetingId: meeting?.id || '1',
       meetingType: formData.meetingType,
       attendees: formData.attendees.split(',').map(s => s.trim()),
-      notes: formData.notes,
-      nextSteps: formData.nextSteps,
+      notes: formData.notes + (formData.nextSteps ? `\n\nNext Steps: ${formData.nextSteps}` : ''),
+      date: new Date().toISOString(),
       saved: true,
     }
 
