@@ -1,0 +1,81 @@
+.app-switcher {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--endeavor-white);
+  border-bottom: 1px solid var(--endeavor-gray);
+  z-index: 1000;
+  padding: 0;
+}
+
+.app-switcher-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+}
+
+.app-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border: none;
+  background: transparent;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--endeavor-gray-dark);
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 500;
+}
+
+.app-tab:hover {
+  background: var(--endeavor-gray-light);
+  color: var(--endeavor-black);
+}
+
+.app-tab.active {
+  color: var(--endeavor-teal);
+  border-bottom-color: var(--endeavor-teal);
+  background: var(--endeavor-gray-light);
+}
+
+.app-icon {
+  font-size: 1.25rem;
+}
+
+.app-name {
+  font-weight: 500;
+}
+
+/* Banner Styles */
+.app-banner {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: var(--endeavor-yellow);
+  padding: 0.75rem 2rem;
+  z-index: 999;
+  text-align: center;
+  font-size: 0.9375rem;
+  color: var(--endeavor-black);
+  font-weight: 500;
+  border-bottom: 1px solid var(--endeavor-gray);
+}
+
+.app-banner.info {
+  background: var(--endeavor-teal);
+  color: var(--endeavor-white);
+}
+
+.app-banner.success {
+  background: var(--endeavor-teal);
+  color: var(--endeavor-white);
+}
+

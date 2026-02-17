@@ -1,0 +1,65 @@
+.stage-indicator {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 0;
+  margin-bottom: 0;
+  position: fixed;
+  top: 57px; /* Position below AppSwitcher (1rem top + ~25px content + 1rem bottom ≈ 57px) */
+  left: 0;
+  right: 0;
+  z-index: 999; /* Below AppSwitcher (1000) but above content */
+}
+
+.stage-indicator-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.stage-indicator-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stage-indicator-step {
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  min-width: 60px;
+  text-align: center;
+}
+
+.stage-indicator-step.active {
+  background: #10b981;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.stage-indicator-step.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.stage-indicator-connector {
+  width: 40px;
+  height: 2px;
+  background: #e5e7eb;
+  transition: all 0.2s;
+}
+
+.stage-indicator-connector.completed {
+  background: #10b981;
+}
+
+.stage-indicator-label {
+  display: block;
+}

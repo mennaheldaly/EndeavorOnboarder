@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Endeavor Brand Colors */
+  --endeavor-teal: #00A3A1;
+  --endeavor-black: #000000;
+  --endeavor-yellow: #FFC72C;
+  --endeavor-white: #FFFFFF;
+  --endeavor-gray-light: #F5F5F5;
+  --endeavor-gray: #E0E0E0;
+  --endeavor-gray-dark: #666666;
+  
+  /* Typography */
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+  
+  /* Transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--endeavor-black);
+  background-color: var(--endeavor-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+  font-size: 3.5rem;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 2.5rem;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+a {
+  color: var(--endeavor-teal);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--endeavor-black);
+}
+
+/* Button Styles */
+button {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  border: 2px solid var(--endeavor-black);
+  background-color: var(--endeavor-white);
+  color: var(--endeavor-black);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: var(--endeavor-black);
+  color: var(--endeavor-white);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background-color: var(--endeavor-teal);
+  color: var(--endeavor-white);
+  border-color: var(--endeavor-teal);
+}
+
+button.primary:hover {
+  background-color: var(--endeavor-black);
+  border-color: var(--endeavor-black);
+}
+
+/* Circular Photo Mask */
+.circular-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--endeavor-gray);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* White Space Emphasis */
+.section {
+  padding: var(--spacing-xl) 0;
+}
+
+.section-large {
+  padding: var(--spacing-xl) 0;
+  min-height: 80vh;
+}
+
+/* Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
