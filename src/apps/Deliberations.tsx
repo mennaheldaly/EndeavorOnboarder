@@ -557,7 +557,7 @@ export function Deliberations({ onComplete }: DeliberationsProps) {
             Next
           </button>
         )}
-        {showRound2Discussion && !showVoteRound2Button && (
+        {showRound2Discussion && !showVoteRound2Button && !showRound2VoteResults && (
           <button
             onClick={handleNextRound2Discussion}
             className="primary"

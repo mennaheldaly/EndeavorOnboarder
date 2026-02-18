@@ -50,6 +50,7 @@ export function Inbox() {
     subject: '',
     body: '',
   })
+  const [isSending, setIsSending] = useState(false)
 
   // Check for assessment followup flag
   useEffect(() => {
@@ -211,7 +212,14 @@ Best,
 
   // Check if forward availability email should be shown (after champion replies with availability)
   useEffect(() => {
-    if (championAvailabilityReceived && !founderConfirmedChampionSlot && !composing && championAvailabilitySlots.length > 0) {
+    // Check if email was already sent to prevent duplicate compose windows
+    const emailAlreadySent = emails.some(e => 
+      e.threadId === 'champion-availability' && 
+      e.subject === 'Champion Follow-Up Availability' &&
+      e.type === 'sent'
+    )
+    
+    if (championAvailabilityReceived && !founderConfirmedChampionSlot && !composing && championAvailabilitySlots.length > 0 && !emailAlreadySent) {
       setComposeType('forward-availability')
       setComposeData({
         to: 'Omar Hassan — Founder, TechFlow Solutions',
@@ -229,7 +237,7 @@ Best,
       })
       setComposing(true)
     }
-  }, [championAvailabilityReceived, founderConfirmedChampionSlot, composing, championAvailabilitySlots])
+  }, [championAvailabilityReceived, founderConfirmedChampionSlot, composing, championAvailabilitySlots, emails])
 
   // Check for schedule champion meeting flag
   useEffect(() => {
@@ -282,7 +290,7 @@ Best,
 
 I hope you're doing well.
 
-We'd like to coordinate a Second Opinion Review for TechFlow Solutions with Maria Rodriguez, focused on operational scaling and execution as the company prepares for the next stage of its Endeavor journey.
+We'd like to coordinate a Second Opinion Review for TechFlow Solutions with Maria Rodriguez, focused on operational scaling and execution as the company prepares for the next stage of its Endeavor journey. For context, TechFlow Solutions is an AI-powered financial planning platform for SMBs across Latin America, currently at $7M ARR with strong product-market fit in Mexico and expanding rapidly as it prepares for multi-market growth toward $20M+ ARR.
 
 Could you please share Maria's availability over the coming weeks? I'll align calendars accordingly.
 
@@ -316,6 +324,11 @@ Best,
   }
 
   const handleSend = () => {
+    // Prevent multiple rapid clicks
+    if (isSending) {
+      return
+    }
+    
     if (!composeData.to || !composeData.subject) {
       alert('Please fill in recipient and subject')
       return
@@ -326,6 +339,8 @@ Best,
       alert('Mentor coordination is handled via the Account Manager.')
       return
     }
+    
+    setIsSending(true)
 
     const email: Email = {
       id: Date.now().toString(),
@@ -357,9 +372,18 @@ Best,
     }
 
     addEmail(email)
+    
+    // If this is a forward-availability email, set founderConfirmedChampionSlot immediately
+    // to prevent the useEffect from reopening the compose window
+    if (composeType === 'forward-availability') {
+      const selectedSlot = championAvailabilitySlots[0] // Default to first slot
+      setFounderConfirmedChampionSlot(true, selectedSlot)
+    }
+    
     setComposing(false)
     setComposeData({ to: '', subject: '', body: '' })
     setSelectedThread(email.threadId || email.id)
+    setIsSending(false)
 
     // If this is an outcome email, mark as sent
     if (composeType === 'outcome') {
@@ -591,8 +615,8 @@ ${championName}`,
         addEmail(reply)
       } else if (composeType === 'forward-availability') {
         // Simulate founder reply with slot selection
+        // Note: founderConfirmedChampionSlot is already set above when sending the email
         const selectedSlot = championAvailabilitySlots[0] // Default to first slot
-        setFounderConfirmedChampionSlot(true, selectedSlot)
         
         const reply: Email = {
           id: (Date.now() + 1).toString(),
